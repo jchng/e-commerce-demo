@@ -9,7 +9,7 @@ import useStyles from './styles';
 //   { id: 2, name: 'b', description: 'prod b', price: '$10', image: 'https://lh3.googleusercontent.com/7FqIJpamAaS8y_CNAr-foiUiGjRZoPJLSWlYNi9TE_YKV-q7_z1-fV9OcMy_rw1wT604tD0Gr6TE7N24pWy9ErMIJv8GgSLpTlxq2wvEr9oMEWnbOQzCLHNY8drBaWXqspe3iIp_24vD_f2hvL3fYqFhfrImkM2S_5k5aV8VqB1KyEAserhq8Kz3qZNZsz6Dfgfiaic1EF2sRQa2Xbmy_Jru68g9fokcdyo7PAjBH6yeW_yAytnteeg2Mx3lMr32TbxhjW31mgdPe2FZ0lkE5fVq3VXufkcsMaf7DJCGTvPS1qJ42vF2qSxhBLhCegvZaajmGFMoQk6t-WmvOJrjcnlVc-8cLAun3hsCd8ZyZKZ-jsuJbdmkGGWiPcRLKVwskoHQrj1SDTTxjwfaz9N4w-znDKFetc6nQFZRmnd8NUcEP7gYi3C4IQ6rXdZKtVcPFY6YDS-e0HHPc_G5W_D5scBiH2OyN96cJRxxOdyKdHuI5MxQm4yVvOFDt5qFTFwfQCL6JaawY1KBu-1CKJVoW7Bacl47dLcpeI1SbcN43KnQgLkXgVqWHzAMYt0RXo8RM9YdfQvx_Q7tRC-iDc-du-AHS9Kq8U6SmMKCuLiKEKsi-lykilyMjGoW2j2Jw4CXgktUf_xILP_7GkipdkTKZoPZpTp4NuTLPGQ5BTSJEKpxpNH5uq1GFaBkgmPZS3Y=w538-h955-no?authuser=0' },
 // ];
 
-const Products = ({ products }) => {
+const Products = ({ products, onAddToCart }) => {
   const classes = useStyles();
 
   // console.log(products);
@@ -19,7 +19,7 @@ const Products = ({ products }) => {
       <Grid container justify="center" spacing={4}>
         {products.map(product => (
           <Grid item key={product.id} xs={12} sm={6} md={4} lg={3}>
-            <Product product={ product }/>
+            <Product product={ product } onAddToCart={ onAddToCart }/>
           </Grid>
         )
         )}
