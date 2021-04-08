@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { commerce } from './lib/commerce';
-import { Products, Navbar, Cart } from './components';
+import { Products, Navbar, Cart, Checkout } from './components';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 const App = () => {
@@ -25,6 +25,24 @@ const App = () => {
     setCart(response.cart);
   }
 
+  const handleUpdateCartQty = async (productId, quantity) => {
+    const { cart } = await commerce.cart.update(productId, { quantity })
+
+    setCart(cart);
+  }
+
+  const handleRemoveFromCart = async (productId, quantity) => {
+    const { cart } = await commerce.cart.remove(productId);
+
+    setCart(cart);
+  }
+
+  const handleEmptyCart = async () => {
+    const { cart } = await commerce.cart.emptyCart();
+
+    setCart(cart);
+  }
+
   useEffect(() => {
     fetchProducts();
     fetchCart();
@@ -41,7 +59,15 @@ const App = () => {
             <Products products={products} onAddToCart={handleAddToCart}/>
           </Route>
           <Route exact path="/cart">
-            <Cart cart={cart} />
+            <Cart 
+              cart={cart} 
+              handleEmptyCart={handleEmptyCart}
+              handleRemoveFromCart={handleRemoveFromCart}
+              handleUpdateCartQty={handleUpdateCartQty}
+            />
+          </Route>
+          <Route exact path="/checkout">
+            <Checkout cart={cart}/>
           </Route>
         </Switch>
       </div>
